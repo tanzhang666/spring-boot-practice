@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class StudentController {
 
-    @Reference(interfaceClass = StudentService.class,version = "1.0")
+    @Reference(interfaceName = "com.learn.springboot.service.StudentService",check = false,version = "1.0")
     private StudentService studentService;
 
     @RequestMapping("/students/{id}")
