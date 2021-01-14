@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.learn.springboot.mapper.StudentMapper">
+  <resultMap id="BaseResultMap" type="com.learn.springboot.model.Student">
+    <!--当数据库中的属性名称跟model中的属性名称不同时可以映射-->
+    <!--id标签只能修饰主键字段-->
+    <!--result除了逐渐以外的字段-->
+    <!--column 数据库中的字段名称
+    property属性名称
+    jdbcType 数据库类型可以省略不写
+    -->
+    <!--数据库字段名不区分大小写 只区分下划线
+      数据库字段名 userName 属性名 username
+      数据库字段名 user_name 属性名 userName
+    -->
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="age" jdbcType="TINYINT" property="age" />
+  </resultMap>
+  <!--将公共的部分抽取出来-->
+  <sql id="Base_Column_List">
+    id, name, age
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_student
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_student
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.learn.springboot.model.Student">
+    insert into t_student (id, name, age)
+    values (#{id,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{age,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.learn.springboot.model.Student">
+    insert into t_student
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="age != null">
+        age,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        #{age,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.learn.springboot.model.Student">
+    update t_student
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null">
+        age = #{age,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.learn.springboot.model.Student">
+    update t_student
+    set name = #{name,jdbcType=VARCHAR},
+      age = #{age,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
