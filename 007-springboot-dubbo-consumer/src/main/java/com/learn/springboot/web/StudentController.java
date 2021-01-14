@@ -1,6 +1,7 @@
 package com.learn.springboot.web;
 
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.learn.springboot.model.Student;
 import com.learn.springboot.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class StudentController {
 
-    @Autowired
+    @Reference(version = "1.0",interfaceClass = StudentService.class,check = false)
     private StudentService studentService;
 
     @RequestMapping("/students/{id}")
