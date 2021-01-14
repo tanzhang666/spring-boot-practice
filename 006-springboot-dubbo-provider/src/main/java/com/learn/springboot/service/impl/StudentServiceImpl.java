@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 //之前在dubbo配置文件里配置的内容
 @Service(interfaceClass = StudentService.class,version = "1.0",timeout = 20000)
 public class StudentServiceImpl implements StudentService {
+
     @Override
     public Student queryStudentById(Long id) {
         Student student = new Student();
