@@ -5,8 +5,7 @@ import com.learn.springboot.model.Student;
 import com.learn.springboot.service.StudentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class StudentController {
@@ -14,10 +13,24 @@ public class StudentController {
     @Reference(interfaceName = "com.learn.springboot.service.StudentService",check = false,version = "1.0")
     private StudentService studentService;
 
+    /**
+     * 为提升系统性能 首先去redis中查询
+     * 如存在 则直接返回
+     * 如不存在 则去数据库中查询 然后再存在redis中
+     * @param model
+     * @param id
+     * @return
+     */
     @RequestMapping("/students/{id}")
     public String getStudent(Model model, @PathVariable Long id){
-        Student student = studentService.queryStudentById(id);
+        Student student = studentService.queryById(id);
         model.addAttribute("student",student);
         return "studentDetail";
+    }
+
+
+    @PostMapping("/students")
+    public @ResponseBody Student addStudent(@RequestBody Student student){
+        return studentService.saveStudent(student);
     }
 }
