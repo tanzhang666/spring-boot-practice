@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class UserController {
 
-    @RequestMapping("/index")
+    @RequestMapping("/userDetail")
     public String userDetail(Model model){
         User user=new User();
         user.setId(1L);
