@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.learn.springboot</groupId>
-    <artifactId>014-springboot-servlet</artifactId>
+    <artifactId>015-springboot-servlet-2</artifactId>
     <version>1.0.0</version>
-    <name>014-springboot-servlet</name>
+    <name>015-springboot-servlet-2</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
