@@ -73,7 +73,8 @@ fabric.properties
 ### Example user template
 
 # IntelliJ project files
-.idea
+.idea/
 *.iml
+logs/
 out
 gen
