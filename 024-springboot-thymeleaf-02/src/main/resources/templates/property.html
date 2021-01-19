@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>常见属性</title>
+</head>
+<body>
+    <h2>传统写法</h2>
+    <form method="get" action="/userDetail">
+        <input type="text" name="id" placeholder="id"/><br/>
+        <input type="text" name="name" placeholder="name"/><br/>
+        <input type="text" name="age" placeholder="age"/><br/>
+        <input type="submit" placeholder="提交"/>
+    </form>
+    <h2>thymeleaf写法</h2>
+    <form method="get" th:action="@{/userDetail}">
+        <input type="text" th:id="id" th:name="id" placeholder="id"/><br/>
+        <input type="text" th:id="name" th:name="name" placeholder="name"/><br/>
+        <input type="text" th:id="age" th:name="age" placeholder="age"/><br/>
+        <input type="submit" placeholder="提交"/>
+    </form>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>userArray</title>
+</head>
+<body>
+    <h2>userArray</h2>
+    <!--user 当前循环的对象名称 userStat当前循环的状态量 可写可不写 默认名称为当前对象名称+stat ${userList} 当前循环的集合}-->
+    <div th:each="user,userStat:${userArray}">
+        <span th:text="${userStat.index}"></span>
+        <span th:text="${userStat.count}"></span>
+        <span th:text="${user.id}"></span>
+        <span th:text="${user.name}"></span>
+        <span th:text="${user.age}"></span>
+    </div>
+</body>
+</html>

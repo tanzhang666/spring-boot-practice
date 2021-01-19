@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>url</title>
+</head>
+<body>
+    <h2>路径表达式@{...}</h2>
+    <a href="http://www.google.com">google</a><br/>
+    <a href="http://www.baidu.com">baidu</a><br/>
+    <a href="/userDetail/1">userDetail</a><br/>
+    <a th:href="@{http://www.firefox.com}">firefox</a><br/>
+    <h2>实际开发中相对路径</h2>
+    <a th:href="@{/userDetail/1}">userDetail/1</a>
+    <h2>带参数</h2>
+    <a th:href="@{'/userDetail/'+${id}}">userDetail/id</a>
+    <h2>多个参数</h2>
+    <a th:href="@{/userDetail(id=${id},name=${name},age=${age})}">userDetail?id=id&name=name&age=age</a><br/>
+    <h2>图片引用</h2>
+    <h2>传统方式</h2>
+    <img src="../static/img/spring-boot.png">
+    <h2>thymeleaf</h2>
+    <!--默认去static下面找-->
+    <img th:src="@{/img/spring-boot.png}">
+</body>
+</html>
